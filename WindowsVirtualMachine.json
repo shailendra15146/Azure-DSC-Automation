@@ -4,7 +4,7 @@
   "parameters": {
     "adminUsername": {
       "type": "string",
-      "defaultValue": "marc.kean",
+      "defaultValue": "ssadmin",
       "minLength": 1,
       "metadata": {
         "description": "Username for the Virtual Machine."
@@ -32,14 +32,14 @@
     },
     "automationAccountName": {
       "type": "string",
-      "defaultValue": "Marc-Automation",
+      "defaultValue": "SS-AzAutomation",
       "metadata": {
         "description": "Name of your Azure automation account"
       }
     },
     "automationAccountRG": {
       "type": "string",
-      "defaultValue": "Marc-Automation",
+      "defaultValue": "SS-DSCDemo",
       "metadata": {
         "description": "Resource Group of your Azure automation account"
       }
@@ -78,14 +78,14 @@
     },
     "vaultName": {
       "type": "string",
-      "defaultValue": "MSMarcVault",
+      "defaultValue": "SS-KeyVault01",
       "metadata": {
         "description": "Name of Key Vault that has a secret"
       }
     },
     "vaultResourceGroup": {
       "type": "string",
-      "defaultValue": "MSMarcVault",
+      "defaultValue": "SS-DSCDemo",
       "metadata": {
         "description": "Resource Group of Key Vault that has a secret"
       }
@@ -107,12 +107,12 @@
     }
   },
   "variables": {
-    "virtualNetworkName": "tarun-vnet",
-    "existingVirtualNetworkResourceGroup": "tarun-day3-rg",
+    "virtualNetworkName": "eJukeNetwork",
+    "existingVirtualNetworkResourceGroup": "eJukeCommon",
     "SubscriptionID": "[subscription().subscriptionId]",
     "vnetId": "[resourceId(variables('existingVirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
     "AutomationAccountId": "[resourceId(parameters('automationAccountRG'), 'Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
-    "subnetRef": "[concat(variables('vnetId'), '/subnets/default')]",
+    "subnetRef": "[concat(variables('vnetId'), '/subnets/first')]",
     "vmName": "[concat('eJukebox', parameters('JukeboxID'))]",
     "OSDiskName": "[concat('OsDisk', variables('vmName'))]",
     "imagePublisher": "MicrosoftWindowsServer",
@@ -784,3 +784,4 @@
     }
   }
 }
+
